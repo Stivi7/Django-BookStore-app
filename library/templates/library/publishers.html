@@ -1,3 +1,8 @@
 {% include 'partials/header.html' %}
-<h1>Publishers Page</h1>
+<h1>Publishers</h1>
+{% for publisher in publishers%}
+    <ol>
+        <li>{{publisher.publisher_name}}</li>
+    </ol>
+{% endfor %}
 {% include 'partials/footer.html' %}

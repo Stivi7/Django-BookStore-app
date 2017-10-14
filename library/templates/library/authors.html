@@ -1,3 +1,8 @@
 {% include 'partials/header.html' %}
-<h1>Authors Page</h1>
+<h1>Authors</h1>
+{% for author in authors%}
+    <ol>
+        <li>{{author.author_name}}</li>
+    </ol>
+{% endfor %}
 {% include 'partials/footer.html' %}

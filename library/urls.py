@@ -6,12 +6,14 @@ from .views import index, books, author, publisher
 
 
 urlpatterns = [
-    #
+    #home/
     url(r'^$', views.index, name='index'),
-    #books/
+    #home/books/
     url(r'^books/$', views.books, name='books'),
-    #books/author/
-    url(r'^books/author/$', views.author, name='author'),
-    #books/author/publisher
-    url(r'^books/author/publisher$', views.publisher, name='publisher')
+    #home/author/
+    url(r'^author/$', views.author, name='author'),
+    #home/publisher/
+    url(r'^publisher/$', views.publisher, name='publisher'),
+    #home/author/id
+    url(r'^author/(?P<id>\w{0,50})/$', views.adetails, name='adetails')
 ]

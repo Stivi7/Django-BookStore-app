@@ -9,12 +9,18 @@ class Author(models.Model):
     phone_number = models.CharField(max_length=200)
     author_email = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.author_name
+
 
 class Publisher(models.Model):
     publisher_name = models.CharField(max_length=200)
     publisher_address = models.CharField(max_length=200)
     publisher_email = models.CharField(max_length=200)
     web = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.publisher_name
 
 
 class Book(models.Model):
@@ -23,4 +29,7 @@ class Book(models.Model):
     year = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
     
