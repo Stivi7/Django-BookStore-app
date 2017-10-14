@@ -15,5 +15,7 @@ urlpatterns = [
     #home/publisher/
     url(r'^publisher/$', views.publisher, name='publisher'),
     #home/author/id
-    url(r'^author/(?P<id>\w{0,50})/$', views.adetails, name='adetails')
+    url(r'^author/(?P<author_id>[0-9]+)/$', views.author_details, name='author_details'),
+    #home/publisher/id
+    url(r'^publisher/(?P<pub_id>[0-9]+)/$', views.publisher_details, name='publisher_details')
 ]

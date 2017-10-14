@@ -11,9 +11,9 @@
     {% for book in books %}
     <tr>
         <td>{{book.title}}</td>
-        <td><a href="{% url 'library: adetails' %}">{{book.author}}</a></td>
+        <td><a href="{% url 'library:author_details' book.author.id %}">{{book.author}}</a></td>
         <td>{{book.year}}</td>
-        <td>{{book.publisher}}</td>
+        <td><a href="{% url 'library:publisher_details' book.publisher.id %}">{{book.publisher}}</a></td>
     </tr>
     {% endfor %}
 </table>
