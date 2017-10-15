@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Author, Book, Publisher
+from datetime import datetime
 # Create your views here.
 
 def index(request):
@@ -50,4 +51,46 @@ def publisher_details(request, pub_id):
         'publisherDetails': publisherDetails
     }
     return render(request, 'details/pubDetails.html', context)
+
+def add(request):
+    if(request.method == 'POST'):
+        name = request.POST['name']
+        address = request.POST['address']
+        birthday = request.POST['birthday']
+        phone = request.POST['phone']
+        email = request.POST['email']
+
+        author = Author(author_name=name, author_address=address, birthday=birthday, phone_number=phone, author_email=email)
+        author.save()
+
+        return redirect('/home/author')
+    else:
+        return render(request, 'forms/add_author.html')
+
+
+def modify(request, author_id):
+    if(request.method == 'POST'):
+        name = request.POST['name']
+        address = request.POST['address']
+        birthday = request.POST['birthday']
+        phone = request.POST['phone']
+        email = request.POST['email']
+
+        a = Author.objects.get(pk=author_id)
+        
+
+        a.author_name = name
+        a.author_address = address
+        a.birthday = birthday
+        a.phone_number = phone
+        a.author_email = email
+        a.save()
+
+        return redirect('/home/author')
+    else:
+        author = get_object_or_404(Author, pk=author_id)
+        return render(request, 'forms/modify_author.html', {'author': author})
+
+
+
 

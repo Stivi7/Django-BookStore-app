@@ -1,9 +1,11 @@
 {% include 'partials/header.html' %}
 <h1>All Books Available</h1>
-{% for book in books%}
+
 
 <ol>
+    {% for book in books%}
     <li>{{book.title}}</li>
+    {% endfor %}
 </ol>
-{% endfor %}
+
 {% include 'partials/footer.html' %}

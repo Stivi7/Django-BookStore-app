@@ -1,8 +1,13 @@
 {% include 'partials/header.html' %}
 <h1>Authors</h1>
-{% for author in authors%}
-    <ol>
-        <li>{{author.author_name}}</li>
-    </ol>
-{% endfor %}
+<a href="{% url 'library:add'%}"><button>Add author</button></a>
+<ol>
+    {% for author in authors%}
+    <li>{{author.author_name}} 
+        <a href="{% url 'library:modify' author.id %}"<button>Modify</button></a>
+        <button>Delete</button>
+    </li>
+    {% endfor %}
+</ol>
+
 {% include 'partials/footer.html' %}
