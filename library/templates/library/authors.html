@@ -4,7 +4,7 @@
 <ol>
     {% for author in authors%}
     <li>{{author.author_name}} 
-        <a href="{% url 'library:modify' author.id %}"<button>Modify</button></a>
+        <a href="{% url 'library:modify' author.id %}"><button>Modify</button></a>
         <button>Delete</button>
     </li>
     {% endfor %}

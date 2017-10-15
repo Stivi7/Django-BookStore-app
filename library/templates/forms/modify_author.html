@@ -3,15 +3,15 @@
 <form action="{% url 'library:modify' author.id %}", method="post">
     {% csrf_token %}
     <label for="name">Name</label><br/>
-    <input type="text" name="name" id="name"/><br/>
+    <input type="text" name="name" id="name" required/><br/>
     <label for="address">Address</label><br/>
-    <input type="text" name="address" id="address"/><br/>
+    <input type="text" name="address" id="address" required/><br/>
     <label for="birthday">Birthday</label><br/>
-    <input type="date" name="birthday" id="bday"/><br/>
+    <input type="date" name="birthday" id="bday" required/><br/>
     <label for="phone">Phone</label><br/>
-    <input type="text" name="phone" id="phone"/><br/>
+    <input type="text" name="phone" id="phone" required/><br/>
     <label for="email">Email</label><br/>
-    <input type="text" name="email" id="email"/><br/><br/>
+    <input type="text" name="email" id="email" required/><br/><br/>
     <input type="submit" Value="Submit"/>
 </form>
 <a href="/home/author/">Go Back</a>
