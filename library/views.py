@@ -128,4 +128,11 @@ def modify_pub(request, pub_id):
         publisher = get_object_or_404(Publisher, pk=pub_id)
         return render(request, 'forms/modify_publisher.html', {'publisher': publisher})
 
+#delete author, and publisher views
+
+def delete_a(request, author_id):
+    a = Author.objects.get(pk=author_id)
+    a.delete()
+    return redirect('/home/author')
+
 
