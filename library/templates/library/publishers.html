@@ -1,6 +1,6 @@
 {% include 'partials/header.html' %}
 <h1>Publishers</h1>
-
+<a href="{% url 'library:addpub' %}"><button>Add publisher</button></a>
 <ol>
     {% for publisher in publishers%}
     <li>{{publisher.publisher_name}}</li>

@@ -91,6 +91,21 @@ def modify(request, author_id):
         author = get_object_or_404(Author, pk=author_id)
         return render(request, 'forms/modify_author.html', {'author': author})
 
+def addpub(request):
+    if(request.method == 'POST'):
+        p_name = request.POST['p_name']
+        p_address = request.POST['p_address']
+        p_email = request.POST['p_email']
+        web = request.POST['web']
+
+        publisher = Publisher(publisher_name=p_name, publisher_address=p_address, publisher_email=p_email, web=web)
+        publisher.save()
+
+        return redirect('/home/publisher')
+    else:
+        return render(request, 'forms/add_publisher.html')
+
+
 
 
 

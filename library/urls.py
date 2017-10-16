@@ -21,5 +21,7 @@ urlpatterns = [
     #home/add
     url(r'^add', views.add, name="add"),
     #home/author/modify/id
-    url(r'^author/modify/(?P<author_id>[0-9]+)/$', views.modify, name='modify')
+    url(r'^author/modify/(?P<author_id>[0-9]+)/$', views.modify, name='modify'),
+    #home/add_publisher
+    url(r'^add_publisher', views.addpub, name="addpub"),
 ]
