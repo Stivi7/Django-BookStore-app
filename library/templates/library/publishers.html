@@ -3,7 +3,10 @@
 <a href="{% url 'library:addpub' %}"><button>Add publisher</button></a>
 <ol>
     {% for publisher in publishers%}
-    <li>{{publisher.publisher_name}}</li>
+    <li>{{publisher.publisher_name}}
+        <a href="{% url 'library:modify_pub' publisher.id%}"><button>Modify</button></a>
+        <button>Delete</button>
+    </li>
     {% endfor %}
 </ol>
 

@@ -52,6 +52,7 @@ def publisher_details(request, pub_id):
     }
     return render(request, 'details/pubDetails.html', context)
 
+#add an author
 def add(request):
     if(request.method == 'POST'):
         name = request.POST['name']
@@ -67,7 +68,7 @@ def add(request):
     else:
         return render(request, 'forms/add_author.html')
 
-
+#modifying an author's details
 def modify(request, author_id):
     if(request.method == 'POST'):
         name = request.POST['name']
@@ -91,6 +92,7 @@ def modify(request, author_id):
         author = get_object_or_404(Author, pk=author_id)
         return render(request, 'forms/modify_author.html', {'author': author})
 
+#adding a publisher
 def addpub(request):
     if(request.method == 'POST'):
         p_name = request.POST['p_name']
@@ -107,5 +109,23 @@ def addpub(request):
 
 
 
+def modify_pub(request, pub_id):
+    if(request.method == 'POST'):
+        p_name = request.POST['p_name']
+        p_address = request.POST['p_address']
+        p_email = request.POST['p_email']
+        web = request.POST['web']
+
+        p = Publisher.objects.get(pk=pub_id)
+        p.publisher_name = p_name
+        p.publisher_address = p_address
+        p.publisher_email = p_email
+        p.web = web
+        p.save()
+
+        return redirect('/home/publisher')
+    else:
+        publisher = get_object_or_404(Publisher, pk=pub_id)
+        return render(request, 'forms/modify_publisher.html', {'publisher': publisher})
 
 

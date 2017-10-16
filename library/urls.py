@@ -19,9 +19,11 @@ urlpatterns = [
     #home/publisher/id
     url(r'^publisher/(?P<pub_id>[0-9]+)/$', views.publisher_details, name='publisher_details'),
     #home/add
-    url(r'^add', views.add, name="add"),
+    url(r'^add$', views.add, name="add"),
     #home/author/modify/id
     url(r'^author/modify/(?P<author_id>[0-9]+)/$', views.modify, name='modify'),
     #home/add_publisher
-    url(r'^add_publisher', views.addpub, name="addpub"),
+    url(r'^add_publisher$', views.addpub, name="addpub"),
+    #home/publisher/modify/id
+    url(r'^publisher/modify/(?P<pub_id>[0-9]+)/$', views.modify_pub, name="modify_pub")
 ]
