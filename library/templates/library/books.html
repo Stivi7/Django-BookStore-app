@@ -1,7 +1,8 @@
 {% include 'partials/header.html' %}
 <h1>All Books Available</h1>
 
-
+<a href="{% url 'library:addbook' %}"><button>Add Books</button></a>
+<hr>
 <ol>
     {% for book in books%}
     <li>{{book.title}}</li>

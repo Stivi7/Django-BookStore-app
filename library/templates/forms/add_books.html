@@ -1,0 +1,27 @@
+{% include 'partials/header.html' %}
+<h1>Add book's details</h1>
+<form action="{% url 'library:addbook' %}", method="post">
+    {% csrf_token %}
+    <label for="b_title">Title</label><br/>
+    <input type="text" name="b_title" id="b_title"/><br/>
+    <label for="b_isbn">ISBN</label><br/>
+    <input type="text" name="b_isbn" id="b_isbn"/><br/>
+    <label for="b_year">Year</label><br/>
+    <input type="number" name="b_year" id="b_year"/><br/>
+    <label for="b_author">Author</label><br/>
+    <select name="b_author">
+        {% for a in author %}
+        <option value="{{a.id}}">{{a.author_name}}</option>
+        {% endfor%}
+    </select><br/>
+    <label for="b_publisher">Publisher</label><br/>
+    <select name="b_publisher">
+        {% for p in publisher%}
+        <option>{{p.publisher_name}}</option>
+        {% endfor %}
+    </select><br/><br/>
+    <input type="submit" Value="Submit"/>
+
+</form>
+<a href="/home/books/">Go Back</a>
+{% include 'partials/footer.html' %}

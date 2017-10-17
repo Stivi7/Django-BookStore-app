@@ -3,11 +3,38 @@
 <a href="{% url 'library:addpub' %}"><button>Add publisher</button></a>
 <ol>
     {% for publisher in publishers%}
-    <li>{{publisher.publisher_name}}
+    <li id={{publisher.id}}>{{publisher.publisher_name}}
         <a href="{% url 'library:modify_pub' publisher.id%}"><button>Modify</button></a>
-        <button>Delete</button>
+        <button class="del_p" id={{publisher.id}}>Delete</button>
     </li>
     {% endfor %}
 </ol>
+<script>
+    $(document).ready(function () {
+        $(".del_p").click(deletePublisher)
 
+        function deletePublisher(e) {
+
+            var id = $(this).attr('id')
+
+            conf = confirm("Do you want to delete this publisher?")
+            if (conf) {
+
+                $.ajax({
+                    url: '/home/publisher/delete/' + id,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                    },
+                    success: function () {}
+                });
+                alert("Deleted")
+                $('#'+id).remove();
+            } else {
+                alert("Action Cancelled")
+            }
+        }
+    })
+</script>
 {% include 'partials/footer.html' %}

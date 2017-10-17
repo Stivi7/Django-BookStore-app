@@ -1,36 +1,46 @@
 {% include 'partials/header.html' %}
 <h1>Authors</h1>
-<a href="{% url 'library:add'%}"><button>Add author</button></a>
-<ol>
+<a href="{% url 'library:add'%}">
+    <button>Add author</button>
+</a>
+<ol id="author_list">
     {% for author in authors%}
-    <li>{{author.author_name}} 
-        <a href="{% url 'library:modify' author.id %}"><button>Modify</button></a>
+
+    <li id={{author.id}}>{{author.author_name}}
+        <a href="{% url 'library:modify' author.id %}">
+            <button>Modify</button>
+        </a>
         <button class="del_a" id={{author.id}}>Delete</button>
     </li>
     {% endfor %}
 </ol>
+
 <script>
-    $(document).ready(function(){
+
+    $(document).ready(function () {
         $(".del_a").click(deleteAuthor)
-        
+
         function deleteAuthor(e) {
-            e.preventDefault();
-            id = $(".del_a").attr('id')
+
+            var id = $(this).attr('id')
+
             conf = confirm("Do you want to delete this author?")
-            if(conf) {
-                
+            if (conf) {
+
                 $.ajax({
-                    type: 'GET',
                     url: '/home/author/delete/' + id,
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                    success: function() {
-                        alert("Author Deleted")
-                    }
-                })
+                    type: 'DELETE',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                    },
+                    success: function () {}
+                });
+                alert("Deleted")
+                $('#'+id).remove();
             } else {
                 alert("Action Cancelled")
             }
         }
     })
-</script>
-{% include 'partials/footer.html' %}
+</script> {% include 'partials/footer.html' %}
