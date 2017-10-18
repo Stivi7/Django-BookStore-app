@@ -1,10 +1,14 @@
 {% include 'partials/header.html' %}
 <h1>Publishers</h1>
-<a href="{% url 'library:addpub' %}"><button>Add publisher</button></a>
+<a href="{% url 'library:addpub' %}">
+    <button>Add publisher</button>
+</a>
 <ol>
     {% for publisher in publishers%}
     <li id={{publisher.id}}>{{publisher.publisher_name}}
-        <a href="{% url 'library:modify_pub' publisher.id%}"><button>Modify</button></a>
+        <a href="{% url 'library:modify_pub' publisher.id%}">
+            <button>Modify</button>
+        </a>
         <button class="del_p" id={{publisher.id}}>Delete</button>
     </li>
     {% endfor %}
@@ -21,20 +25,24 @@
             if (conf) {
 
                 $.ajax({
-                    url: '/home/publisher/delete/' + id,
+                    url: '/home/publisher/delete/' + id + "/",
                     type: 'DELETE',
                     dataType: 'json',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
                     },
-                    success: function () {}
+                    success: function (data) {
+                        if (data.deleted) {
+                            $('#' + id).remove();
+                        } else {
+                            alert("Error deleting publisher")
+                        }
+                    }
                 });
-                alert("Deleted")
-                $('#'+id).remove();
+
             } else {
                 alert("Action Cancelled")
             }
         }
     })
-</script>
-{% include 'partials/footer.html' %}
+</script> {% include 'partials/footer.html' %}

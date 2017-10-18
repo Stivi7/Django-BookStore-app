@@ -1,0 +1,7 @@
+{% include 'partials/header.html' %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% include 'library/form-template.html'%}
+    <button type="submit">Submit</button>
+</form>
+{% include 'partials/footer.html' %}

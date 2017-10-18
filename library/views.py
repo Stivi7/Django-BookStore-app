@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Author, Book, Publisher
 from datetime import datetime
+from django.http import JsonResponse
+from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
 
 def index(request):
@@ -129,29 +132,9 @@ def modify_pub(request, pub_id):
         return render(request, 'forms/modify_publisher.html', {'publisher': publisher})
 
 
-def addbook(request):
-    if(request.method == 'POST'):
-        b_title = request.POST['b_title']
-        b_isbn = request.POST['b_isbn']
-        b_year = request.POST['b_year']
-        b_author = request.POST['b_author']
-        b_publisher = request.POST['b_publisher']
-
-        book = Book(title=b_title, isbn=b_isbn, year=b_year, author=b_author, publisher=b_publisher)
-        book.save()
-        
-        return redirect('/home/books')
-    else:
-        author = Author.objects.all()
-        publisher = Publisher.objects.all()
-        books = Book.objects.all()
-        context = {
-            'author': author,
-            'publisher': publisher,
-            'books': books,
-        }
-        
-        return render(request, 'forms/add_books.html', context)
+class BookCreate(CreateView):
+    model = Book
+    fields = ['title', 'isbn', 'year', 'author', 'publisher']
 
 
 
@@ -164,18 +147,18 @@ def delete_a(request, author_id):
         try:
             a = Author.objects.get(pk=author_id)
         except Author.DoesNotExist:
-            return HttpResponse("Author does not exist")
+            return JsonResponse({'deleted': False}) 
         a.delete()
-        return redirect('/home/author') 
+        return JsonResponse({'deleted': True})
 
 def delete_p(request, pub_id):
     if(request.method == 'DELETE'):
         try:
             p = Publisher.objects.get(pk=pub_id)
         except Publisher.DoesNotExist:
-            return HttpResponse("Publisher does not exist")
+            return JsonResponse({'deleted': False})
         p.delete()
-        return redirect('/home/publisher') 
+        return JsonResponse({'deleted': True}) 
         
     
 

@@ -31,6 +31,5 @@ urlpatterns = [
     #home/publisher/delete/id
     url(r'^publisher/delete/(?P<pub_id>[0-9]+)/$', views.delete_p, name='delete_p'),
     #home/add_books
-    url(r'^add_books$', views.addbook, name="addbook"),
-
+    url(r'^add_books$', views.BookCreate.as_view(), name="book-add"),
 ]

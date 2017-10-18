@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -29,6 +30,9 @@ class Book(models.Model):
     year = models.IntegerField(null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('library:books')
 
     def __str__(self):
         return self.title

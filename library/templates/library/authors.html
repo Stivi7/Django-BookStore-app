@@ -28,16 +28,20 @@
             if (conf) {
 
                 $.ajax({
-                    url: '/home/author/delete/' + id,
+                    url: '/home/author/delete/' + id + "/",
                     type: 'DELETE',
                     dataType: 'json',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
                     },
-                    success: function () {}
-                });
-                alert("Deleted")
-                $('#'+id).remove();
+                    success: function (data) {
+                        if (data.deleted) {
+                            $('#'+id).remove();
+                        } else {
+                            alert("Error deleting author")
+                        }
+                    }
+                });                
             } else {
                 alert("Action Cancelled")
             }
