@@ -6,6 +6,7 @@ from datetime import datetime
 from django.http import JsonResponse
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 # Create your views here.
 
 def index(request):
@@ -132,10 +133,20 @@ def modify_pub(request, pub_id):
         return render(request, 'forms/modify_publisher.html', {'publisher': publisher})
 
 
+#Add a new book (ModelView generic view)
 class BookCreate(CreateView):
     model = Book
     fields = ['title', 'isbn', 'year', 'author', 'publisher']
 
+#Modify a book
+class BookUpdate(UpdateView):
+    model = Book
+    fields = ['title', 'isbn', 'year', 'author', 'publisher']
+
+#Delete a book
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('library:books')
 
 
 

@@ -32,4 +32,8 @@ urlpatterns = [
     url(r'^publisher/delete/(?P<pub_id>[0-9]+)/$', views.delete_p, name='delete_p'),
     #home/add_books
     url(r'^add_books$', views.BookCreate.as_view(), name="book-add"),
+    #home/update_books/id
+    url(r'^update_books/(?P<pk>[0-9]+)/$', views.BookUpdate.as_view(), name="book-update"),
+    #home/delete_books/id
+    url(r'^delete_books/(?P<pk>[0-9]+)/$', views.BookDelete.as_view(), name="book-delete"),
 ]

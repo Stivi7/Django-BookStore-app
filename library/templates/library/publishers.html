@@ -3,9 +3,10 @@
 <a href="{% url 'library:addpub' %}">
     <button>Add publisher</button>
 </a>
+<hr>
 <ol>
     {% for publisher in publishers%}
-    <li id={{publisher.id}}>{{publisher.publisher_name}}
+    <li id={{publisher.id}}><a href="{% url 'library:publisher_details' publisher.id %}">{{publisher.publisher_name}}</a>
         <a href="{% url 'library:modify_pub' publisher.id%}">
             <button>Modify</button>
         </a>

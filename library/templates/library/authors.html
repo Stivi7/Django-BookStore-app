@@ -1,12 +1,14 @@
 {% include 'partials/header.html' %}
 <h1>Authors</h1>
+
 <a href="{% url 'library:add'%}">
     <button>Add author</button>
 </a>
+<hr>
 <ol id="author_list">
     {% for author in authors%}
 
-    <li id={{author.id}}>{{author.author_name}}
+    <li id={{author.id}}><a href="{% url 'library:author_details' author.id %}">{{author.author_name}}</a>
         <a href="{% url 'library:modify' author.id %}">
             <button>Modify</button>
         </a>
