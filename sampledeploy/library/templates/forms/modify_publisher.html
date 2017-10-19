@@ -1,0 +1,16 @@
+{% include 'partials/header.html' %}
+<h1>Add publisher details</h1>
+<form action="{% url 'library:modify_pub' publisher.id %}", method="post">
+    {% csrf_token %}
+    <label for="p_name">Name</label><br/>
+    <input type="text" name="p_name" id="p_name" required/><br/>
+    <label for="p_address">Address</label><br/>
+    <input type="text" name="p_address" id="p_address" required/><br/>
+    <label for="p_email">Email</label><br/>
+    <input type="text" name="p_email" id="p_email" required/><br/>
+    <label for="web">Web</label><br/>
+    <input type="text" name="web" id="web" required/><br/><br/>
+    <input type="submit" Value="Submit"/>
+</form>
+<a href="/home/publisher/">Go Back</a>
+{% include 'partials/footer.html' %}

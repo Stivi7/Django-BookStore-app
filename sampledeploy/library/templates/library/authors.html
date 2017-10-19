@@ -1,0 +1,52 @@
+{% include 'partials/header.html' %}
+<h1>Authors</h1>
+
+<a href="{% url 'library:add'%}">
+    <button>Add author</button>
+</a>
+<hr>
+<ol id="author_list">
+    {% for author in authors%}
+
+    <li id={{author.id}}><a href="{% url 'library:author_details' author.id %}">{{author.author_name}}</a>
+        <a href="{% url 'library:modify' author.id %}">
+            <button>Modify</button>
+        </a>
+        <button class="del_a" id={{author.id}}>Delete</button>
+    </li>
+    {% endfor %}
+</ol>
+
+<script>
+
+    $(document).ready(function () {
+        $(".del_a").click(deleteAuthor)
+
+        function deleteAuthor(e) {
+
+            var id = $(this).attr('id')
+
+            conf = confirm("Do you want to delete this author?")
+            if (conf) {
+
+                $.ajax({
+                    url: '/home/author/delete/' + id + "/",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                    },
+                    success: function (data) {
+                        if (data.deleted) {
+                            $('#'+id).remove();
+                        } else {
+                            alert("Error deleting author")
+                        }
+                    }
+                });                
+            } else {
+                alert("Action Cancelled")
+            }
+        }
+    })
+</script> {% include 'partials/footer.html' %}

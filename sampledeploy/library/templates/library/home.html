@@ -1,0 +1,21 @@
+{% include 'partials/header.html' %}
+<h1>Latest Books</h1>
+<hr>
+<table style="width: 50%">
+    <tr>
+        <th>Book title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Publisher</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{book.title}}</td>
+        <td><a href="{% url 'library:author_details' book.author.id %}">{{book.author}}</a></td>
+        <td>{{book.year}}</td>
+        <td><a href="{% url 'library:publisher_details' book.publisher.id %}">{{book.publisher}}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% include 'partials/footer.html' %}
