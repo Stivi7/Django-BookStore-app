@@ -25,7 +25,7 @@ SECRET_KEY = 'ta$=_7+gq5wl1!ntw4ovpcj89ydyq3lh=ydcw+n@4-#1q(orb9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'https://afternoon-beach-29938.herokuapp.com/']
 
 
 # Application definition
@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # TEMPLATE_LOADERS = (
 #     'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.app_directories.Loader',
