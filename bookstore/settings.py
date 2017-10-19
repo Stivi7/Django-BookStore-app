@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url 
+
+
+# db_from_env = dj_database_url.config()
+# DATABASES[‘default’].update(db_from_env)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +30,7 @@ SECRET_KEY = 'ta$=_7+gq5wl1!ntw4ovpcj89ydyq3lh=ydcw+n@4-#1q(orb9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'https://afternoon-beach-29938.herokuapp.com/']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost',]
 
 
 # Application definition
@@ -125,7 +130,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 # TEMPLATE_LOADERS = (
 #     'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.app_directories.Loader',
 # )
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
