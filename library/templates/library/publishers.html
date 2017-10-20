@@ -1,16 +1,18 @@
 {% include 'partials/header.html' %}
+<div class="text-center">
 <h1>Publishers</h1>
 <a href="{% url 'library:addpub' %}">
-    <button>Add publisher</button>
+    <button class="btn btn-default btn-success">Add publisher</button>
 </a>
+</div>
 <hr>
-<ol>
+<ol class="list-group text-center">
     {% for publisher in publishers%}
     <li id={{publisher.id}}><a href="{% url 'library:publisher_details' publisher.id %}">{{publisher.publisher_name}}</a>
         <a href="{% url 'library:modify_pub' publisher.id%}">
-            <button>Modify</button>
+            <button class="btn btn-default btn-primary btn-sm">Modify</button>
         </a>
-        <button class="del_p" id={{publisher.id}}>Delete</button>
+        <button class="del_p btn btn-default btn-danger btn-sm" id={{publisher.id}}>Delete</button>
     </li>
     {% endfor %}
 </ol>

@@ -30,7 +30,7 @@ SECRET_KEY = 'ta$=_7+gq5wl1!ntw4ovpcj89ydyq3lh=ydcw+n@4-#1q(orb9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'bookstoreonheroku.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'quiet-stream-57120.herokuapp.com']
 
 
 # Application definition
@@ -130,9 +130,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
 # TEMPLATE_LOADERS = (
 #     'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.app_directories.Loader',

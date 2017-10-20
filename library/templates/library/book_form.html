@@ -1,9 +1,10 @@
 {% include 'partials/header.html' %}
 <h1>Add Books</h1>
 <form action="" method="post">
-    {% csrf_token %}
-    {% include 'library/form-template.html'%}
-    <br/>
-    <button type="submit">Submit</button>
+    <div class="form-group" style="width:40%">
+        {% csrf_token %} {% include 'library/form-template.html'%}
+        <br/>
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
 </form>
 {% include 'partials/footer.html' %}

@@ -1,21 +1,23 @@
 {% include 'partials/header.html' %}
+<div class="text-center">
 <h1>All Books Available</h1>
 
 <a href="{% url 'library:book-add' %}">
-    <button>Add Books</button>
+    <button class="btn btn-default btn-success">Add Books</button>
 </a>
+</div>
 <hr>
-<ol>
+<ol class="list-group text-center">
     {% for book in books%}
-    <li>{{book.title}}
+    <li class="active">{{book.title}}
 
         <div>
             <a href="{% url 'library:book-update' book.id%}">
-                <button>Modify</button>
+                <button class="btn btn-default btn-primary btn-sm">Modify</button>
             </a>
             <form action="{% url 'library:book-delete' book.id%}" method="post">
                 {% csrf_token %}
-                <button type="submit">Remove</button>
+                <button type="submit" class="btn btn-default btn-danger btn-sm">Remove</button>
             </form>
         </div>
 
