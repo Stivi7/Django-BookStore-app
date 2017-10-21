@@ -80,20 +80,9 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bookstore',
-        'USER': 'stivi',
-        'PASSWORD': 'Password1',
-        'HOST': 'localhost',
-        'PORT': ''
-    }
-}
-
+DATABASES = {}
 db_from_env = dj_database_url.config()
 DATABASES['default'] = db_from_env
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -139,3 +128,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #     'django.template.loaders.app_directories.Loader',
 # )
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+

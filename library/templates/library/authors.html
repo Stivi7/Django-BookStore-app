@@ -2,7 +2,7 @@
 <div class="text-center">
 <h1>Authors</h1>
 
-<a href="{% url 'library:add'%}">
+<a href="{% url 'library:add' %}">
     <button class="btn btn-default btn-success">Add author</button>
 </a>
 </div>
@@ -10,7 +10,7 @@
 <ol class="list-group text-center">
     {% for author in authors%}
 
-    <li id={{author.id}}><a href="{% url 'library:author_details' author.id %}">{{author.author_name}}</a>
+    <li id={{author.id}}><a href="{% url 'library:author_details' author.id %}?next={{ request.path }}">{{author.author_name}}</a>
         <a href="{% url 'library:modify' author.id %}">
             <button class="btn btn-default btn-primary btn-sm">Modify</button>
         </a>

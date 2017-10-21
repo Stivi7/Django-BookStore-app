@@ -8,7 +8,7 @@
 <hr>
 <ol class="list-group text-center">
     {% for publisher in publishers%}
-    <li id={{publisher.id}}><a href="{% url 'library:publisher_details' publisher.id %}">{{publisher.publisher_name}}</a>
+    <li id={{publisher.id}}><a href="{% url 'library:publisher_details' publisher.id %}?next={{ request.path }}">{{publisher.publisher_name}}</a>
         <a href="{% url 'library:modify_pub' publisher.id%}">
             <button class="btn btn-default btn-primary btn-sm">Modify</button>
         </a>

@@ -25,15 +25,15 @@ urlpatterns = [
     #home/add_publisher
     url(r'^add_publisher$', views.addpub, name="addpub"),
     #home/publisher/modify/id
-    url(r'^publisher/modify/(?P<pub_id>[0-9]+)/$', views.modify_pub, name="modify_pub"),
+    url(r'^publisher/modify/(?P<pub_id>[0-9]+)/$', views.modify_pub, name='modify_pub'),
     #home/author/delete/id
     url(r'^author/delete/(?P<author_id>[0-9]+)/$', views.delete_a, name='delete_a'),
     #home/publisher/delete/id
     url(r'^publisher/delete/(?P<pub_id>[0-9]+)/$', views.delete_p, name='delete_p'),
     #home/add_books
-    url(r'^add_books$', views.BookCreate.as_view(), name="book-add"),
+    url(r'^add_books$', views.BookCreate.as_view(), name='book-add'),
     #home/update_books/id
-    url(r'^update_books/(?P<pk>[0-9]+)/$', views.BookUpdate.as_view(), name="book-update"),
+    url(r'^update_books/(?P<pk>[0-9]+)/$', views.BookUpdate.as_view(), name='book-update'),
     #home/delete_books/id
-    url(r'^delete_books/(?P<pk>[0-9]+)/$', views.BookDelete.as_view(), name="book-delete"),
+    url(r'^delete_books/(?P<pk>[0-9]+)/$', views.BookDelete.as_view(), name='book-delete'),
 ]

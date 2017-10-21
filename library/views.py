@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.http import HttpResponse
 from django.template import loader
 from .models import Author, Book, Publisher
@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.utils.http import is_safe_url
 # Create your views here.
 
 def index(request):
@@ -42,17 +43,26 @@ def publisher(request):
 
 
 #Detail views
+#get next with GET request, pass it as a context and use it in the template
 def author_details(request, author_id):
+    if (request.method == 'GET'):
+        nxt = request.GET.get('next', '')
+         
     authorDetails = get_object_or_404(Author, pk=author_id)
     context = {
-        'authorDetails': authorDetails
+        'authorDetails': authorDetails,
+        'next': nxt
+        
     }
     return render(request, 'details/authorDetails.html', context)
 
 def publisher_details(request, pub_id):
+    if (request.method == 'GET'):
+        nxt = request.GET.get('next', '')
     publisherDetails = get_object_or_404(Publisher, pk=pub_id)
     context = {
-        'publisherDetails': publisherDetails
+        'publisherDetails': publisherDetails,
+        'next': nxt
     }
     return render(request, 'details/pubDetails.html', context)
 
@@ -170,6 +180,13 @@ def delete_p(request, pub_id):
             return JsonResponse({'deleted': False})
         p.delete()
         return JsonResponse({'deleted': True}) 
+
+
+
+    
+
+
+
         
     
 
