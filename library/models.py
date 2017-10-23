@@ -8,7 +8,7 @@ class Author(models.Model):
     author_address = models.CharField(max_length=200)
     birthday = models.DateField(null=True)
     phone_number = models.CharField(max_length=200)
-    author_email = models.CharField(max_length=200)
+    author_email = models.EmailField()
 
     def __str__(self):
         return self.author_name
@@ -17,8 +17,8 @@ class Author(models.Model):
 class Publisher(models.Model):
     publisher_name = models.CharField(max_length=200)
     publisher_address = models.CharField(max_length=200)
-    publisher_email = models.CharField(max_length=200)
-    web = models.CharField(max_length=200)
+    publisher_email = models.EmailField()
+    web = models.URLField()
 
     def __str__(self):
         return self.publisher_name

@@ -1,15 +1,12 @@
 from django.http import QueryDict
+from django.utils.deprecation import MiddlewareMixin
  
-class HttpPostTunnelingMiddleware(object):
+
+class NavigationMiddleware(MiddlewareMixin):
     def process_request(self, request):
-        if request.META.has_key('HTTP_X_METHODOVERRIDE'):
-            http_method = request.META['HTTP_X_METHODOVERRIDE']
-            if http_method.lower() == 'put':
-                request.method = 'PUT'
-                request.META['REQUEST_METHOD'] = 'PUT'
-                request.PUT = QueryDict(request.body)
-            if http_method.lower() == 'delete':
-                request.method = 'DELETE'
-                request.META['REQUEST_METHOD'] = 'DELETE'
-                request.DELETE = QueryDict(request.body)
-        return None
+        if (request.method == 'GET'):
+            request.nxt = request.GET.get('next', '')
+
+    def process_template_response(self, request, response):
+        response.context_data['next'] = request.nxt
+        return response

@@ -3,7 +3,7 @@
 <div class="text-center">
 <h1>All Books Available</h1>
 
-<a href="{% url 'library:book-add' %}">
+<a href="{% url 'library:book-add' %}?next={{ request.path }}">
     <button class="btn btn-default btn-success">Add Books</button>
 </a>
 </div>

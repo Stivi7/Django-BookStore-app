@@ -1,8 +1,10 @@
+{% extends 'partials/base.html' %}
+{% block content %}
 <h1>Publisher Details</h1>
 
-<h5>Name:</h5> {{publisherDetails.publisher_name}}
-<h5>Address:</h5> {{publisherDetails.publisher_address}}
-<h5>Email:</h5> {{publisherDetails.publisher_email}}
-<h5>Web:</h5> {{publisherDetails.web}}
+<h5>Name:</h5> {{object.publisher_name}}
+<h5>Address:</h5> {{object.publisher_address}}
+<h5>Email:</h5> {{object.publisher_email}}
+<h5>Web:</h5> {{object.web}}
 </br>
-<a href="{{ next }}"><<< Go Back</a>
+{% endblock %}
