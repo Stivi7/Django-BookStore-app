@@ -1,12 +1,13 @@
 {% extends 'partials/base.html' %}
 {% block content %}
-<div class="text-center">
+<div class="text-center container">
 <h1>Publishers</h1>
 <a href="{% url 'library:addpub' %}?next={{ request.path }}">
     <button class="btn btn-default btn-success">Add publisher</button>
 </a>
-</div>
+
 <hr>
+<div class="wrapper">
 <ol class="list-group text-center">
     {% for publisher in publishers %}
     <li id={{publisher.id}}><a href="{% url 'library:publisher_details' publisher.id %}?next={{ request.path }}">{{publisher.publisher_name}}</a>
@@ -17,6 +18,8 @@
     </li>
     {% endfor %}
 </ol>
+</div>
+</div>
 <script>
     $(document).ready(function () {
         $(".del_p").click(deletePublisher)

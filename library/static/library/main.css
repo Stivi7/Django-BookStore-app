@@ -1,1 +1,22 @@
+body {
+    background-color: #EEEBEA;
+}
 
+
+.wrapper {
+    padding: 20px;
+    background-color: white !important;
+    box-shadow: 0 0 20px 0 #aaa;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+.list_padd {
+    padding: 5px;
+}
+
+li {
+    list-style: none;
+}

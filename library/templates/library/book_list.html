@@ -1,21 +1,23 @@
 {% extends 'partials/base.html' %}
 {% block content %}
-<div class="text-center">
+<div class="text-center container">
 <h1>All Books Available</h1>
 
 <a href="{% url 'library:book-add' %}?next={{ request.path }}">
     <button class="btn btn-default btn-success">Add Books</button>
 </a>
-</div>
+
 <hr>
+<div class="wrapper">
 <ol class="list-group text-center">
     {% for book in books%}
     <li class="active">{{book.title}}
 
-        <div>
+            <div>
             <a href="{% url 'library:book-update' book.id%}?next={{ request.path }}">
                 <button class="btn btn-default btn-primary btn-sm">Modify</button>
             </a>
+            
             <form action="{% url 'library:book-delete' book.id%}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-default btn-danger btn-sm">Remove</button>
@@ -25,4 +27,6 @@
     </li>
     {% endfor %}
 </ol>
+</div>
+</div>
 {% endblock %}

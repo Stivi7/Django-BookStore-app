@@ -1,5 +1,6 @@
 {% extends 'partials/base.html' %}
 {% block content %}
+<div class="container">
 <div class="text-center">
 <h1>Authors</h1>
 
@@ -8,10 +9,11 @@
 </a>
 </div>
 <hr>
-<ol class="list-group text-center">
+<div class="wrapper">
+<ol class="list-group">
     {% for author in authors %}
 
-    <li id={{author.id}}><a href="{% url 'library:author_details' author.id %}?next={{ request.path }}">{{author.author_name}}</a>
+    <li id={{author.id}} class="list_padd"><a href="{% url 'library:author_details' author.id %}?next={{ request.path }}">{{author.author_name}}</a>
         <a href="{% url 'library:modify' author.id %}?next={{ request.path }}">
             <button class="btn btn-default btn-primary btn-sm">Modify</button>
         </a>
@@ -19,6 +21,8 @@
     </li>
     {% endfor %}
 </ol>
+</div>
+</div>
 
 <script>
 

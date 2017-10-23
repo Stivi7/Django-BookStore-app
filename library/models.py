@@ -13,15 +13,21 @@ class Author(models.Model):
     def __str__(self):
         return self.author_name
 
+    def get_absolute_url(self):
+        return reverse('library:author')
+
 
 class Publisher(models.Model):
     publisher_name = models.CharField(max_length=200)
     publisher_address = models.CharField(max_length=200)
     publisher_email = models.EmailField()
-    web = models.URLField()
+    web = models.CharField(max_length=200)
 
     def __str__(self):
         return self.publisher_name
+
+    def get_absolute_url(self):
+        return reverse('library:publisher')
 
 
 class Book(models.Model):
