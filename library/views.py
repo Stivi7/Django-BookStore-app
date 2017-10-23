@@ -10,8 +10,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView
 
-# Create your views here.
-
+#top 10 books in the home page
 def index(request):
     books = Book.objects.all()[:10]
     author = Author.objects.all()
@@ -47,17 +46,17 @@ class PublisherDetails(DetailView):
     model = Publisher
     template_name = 'details/pubDetails.html'
 
-#add an author
+#Add an author
 class AuthorCreate(CreateView):
     model = Author
     fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
 
-#modify an author
+#Modify an author
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
 
-#delete an author
+#Delete an author
 def delete_a(request, author_id):
     if(request.method == 'DELETE'):
         try:
@@ -68,18 +67,18 @@ def delete_a(request, author_id):
         return JsonResponse({'deleted': True})
 
 
-#adding a publisher
+#Add a publisher
 class PublisherCreate(CreateView):
     model = Publisher
     fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
 
 
-#modify a publisher
+#Modify a publisher
 class PublisherUpdate(UpdateView):
     model = Publisher
     fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
 
-#delete a publisher
+#Delete a publisher
 def delete_p(request, pub_id):
     if(request.method == 'DELETE'):
         try:

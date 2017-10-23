@@ -1,4 +1,5 @@
-{% include 'partials/header.html' %}
+{% extends 'partials/base.html' %}
+{% block content %}
 <div class="text-center">
 <h1>Publishers</h1>
 <a href="{% url 'library:addpub' %}?next={{ request.path }}">
@@ -48,4 +49,5 @@
             }
         }
     })
-</script> {% include 'partials/footer.html' %}
+</script> 
+{% endblock %}

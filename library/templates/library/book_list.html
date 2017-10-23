@@ -13,7 +13,7 @@
     <li class="active">{{book.title}}
 
         <div>
-            <a href="{% url 'library:book-update' book.id%}">
+            <a href="{% url 'library:book-update' book.id%}?next={{ request.path }}">
                 <button class="btn btn-default btn-primary btn-sm">Modify</button>
             </a>
             <form action="{% url 'library:book-delete' book.id%}" method="post">
