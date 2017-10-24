@@ -8,5 +8,5 @@ class NavigationMiddleware(MiddlewareMixin):
             request.nxt = request.GET.get('next', '')
 
     def process_template_response(self, request, response):
-        response.context_data['next'] = request.nxt
-        return response
+            response.context_data['next'] = request.nxt
+            return response

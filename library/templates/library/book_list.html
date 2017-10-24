@@ -11,7 +11,7 @@
 <div class="wrapper">
 <ol class="list-group text-center">
     {% for book in books%}
-    <li class="active">{{book.title}}
+    <li class="list_padd">{{book.title}}
 
             <div>
             <a href="{% url 'library:book-update' book.id%}?next={{ request.path }}">
