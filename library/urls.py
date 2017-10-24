@@ -7,7 +7,9 @@ from . import views
 
 urlpatterns = [
     #home/
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.headpage, name='headpage'),
+    #home/latest
+    url(r'^latest/$', views.index, name='index'),
     #home/books/
     url(r'^books/$', views.BookList.as_view(), name='books'),
     #home/author/

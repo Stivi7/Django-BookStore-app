@@ -105,6 +105,10 @@ class BookDelete(DeleteView):
     success_url = reverse_lazy('library:books')
 
 
+def headpage(request):
+    return render(request, 'library/headpage.html')
+
+
 
 
 
