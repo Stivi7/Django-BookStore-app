@@ -19,12 +19,11 @@ from django.contrib.auth import views as auth_views
 from library import views
 
 
-app_name = 'library'
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/', include('library.urls', namespace='library')),
     url(r'^', include('library.urls')),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^signup/$', views.signup, name='signup'),
 ]

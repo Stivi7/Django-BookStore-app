@@ -1,9 +1,11 @@
-{% extends 'partials/base.html' %}
+{% extends 'partials/base2.html' %}
 {% block content%}
+<div class="container text-center">
 <h2>Login</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Log In</button>
 </form>
+</div>
 {% endblock %}

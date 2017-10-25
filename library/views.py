@@ -9,6 +9,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
 #top 10 books in the home page
 def index(request):
@@ -104,9 +106,25 @@ class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('library:books')
 
-
+#render frontpage of authentication
 def headpage(request):
     return render(request, 'library/headpage.html')
+
+#signup
+def signup(request):
+    if (request.method == 'POST'):
+        form = UserCreationForm(request.POST)
+        if (form.is_valid()):
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('library:index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/reg.html', {'form': form})
+
 
 
 

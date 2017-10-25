@@ -1,32 +1,43 @@
-{% extends 'partials/base.html' %}
-{% block content %}
-<div class="text-center container">
-<h1>All Books Available</h1>
+{% extends 'partials/base.html' %} {% block content %}
+<div class="container">
+    <h1 class="text-center">All Books Available</h1>
 
-<a href="{% url 'library:book-add' %}?next={{ request.path }}">
-    <button class="btn btn-default btn-success">Add Books</button>
-</a>
+    <a href="{% url 'library:book-add' %}?next={{ request.path }}">
+        <button class="btn btn-default btn-success">Add Books</button>
+    </a>
+    <br/>
+    <br/>
+    <div class="wrapper">
+        <ol class="list-group">
+            {% for book in books%}
+            <li class="list_padd">
+                <div class="row">
+                    
+                    <!-- Details -->
+                    <div class="col-lg-8">
+                        {{book.title}}
+                    </div>
 
-<hr>
-<div class="wrapper">
-<ol class="list-group text-center">
-    {% for book in books%}
-    <li class="list_padd">{{book.title}}
+                    <!-- Actions -->
+                    <div class="col-lg-4 right-actions">
+                        <div>
+                            <a href="{% url 'library:book-update' book.id%}?next={{ request.path }}">
+                                <button class="btn btn-default btn-primary btn-sm">Modify</button>
+                            </a>
 
-            <div>
-            <a href="{% url 'library:book-update' book.id%}?next={{ request.path }}">
-                <button class="btn btn-default btn-primary btn-sm">Modify</button>
-            </a>
-            
-            <form action="{% url 'library:book-delete' book.id%}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-default btn-danger btn-sm">Remove</button>
-            </form>
-        </div>
+                            <form action="{% url 'library:book-delete' book.id%}" method="post" class="inline-form">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-default btn-danger btn-sm">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-    </li>
-    {% endfor %}
-</ol>
-</div>
+
+
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
 </div>
 {% endblock %}
