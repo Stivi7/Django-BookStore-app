@@ -27,3 +27,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
 ]
+
+urlpatterns += [
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+]

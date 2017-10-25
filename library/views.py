@@ -11,8 +11,11 @@ from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 #top 10 books in the home page
+@login_required
 def index(request):
     books = Book.objects.all()[:10]
     author = Author.objects.all()
@@ -23,15 +26,15 @@ def index(request):
     return render(request, 'library/home.html', context)
 
 #Generic List views about, books, authors and publishers
-class BookList(ListView):
+class BookList(LoginRequiredMixin, ListView):
     model = Book
     context_object_name = 'books'
 
-class AuthorList(ListView):
+class AuthorList(LoginRequiredMixin, ListView):
     model = Author
     context_object_name = 'authors'
 
-class PublisherList(ListView):
+class PublisherList(LoginRequiredMixin, ListView):
     model = Publisher
     context_object_name = 'publishers'
     
@@ -39,26 +42,27 @@ class PublisherList(ListView):
 
 #Detail views
 
-class AuthorDetails(DetailView):
+class AuthorDetails(LoginRequiredMixin, DetailView):
     model = Author
     template_name = 'details/authorDetails.html'
     
     
-class PublisherDetails(DetailView):
+class PublisherDetails(LoginRequiredMixin, DetailView):
     model = Publisher
     template_name = 'details/pubDetails.html'
 
 #Add an author
-class AuthorCreate(CreateView):
+class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
     fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
 
 #Modify an author
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(LoginRequiredMixin, UpdateView):
     model = Author
     fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
 
 #Delete an author
+@login_required
 def delete_a(request, author_id):
     if(request.method == 'DELETE'):
         try:
@@ -70,17 +74,18 @@ def delete_a(request, author_id):
 
 
 #Add a publisher
-class PublisherCreate(CreateView):
+class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
     fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
 
 
 #Modify a publisher
-class PublisherUpdate(UpdateView):
+class PublisherUpdate(LoginRequiredMixin, UpdateView):
     model = Publisher
     fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
 
 #Delete a publisher
+@login_required
 def delete_p(request, pub_id):
     if(request.method == 'DELETE'):
         try:
@@ -92,7 +97,7 @@ def delete_p(request, pub_id):
 
 
 #Add a new book (ModelView generic view)
-class BookCreate(CreateView):
+class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
     fields = ['title', 'isbn', 'year', 'author', 'publisher']
 
@@ -102,7 +107,7 @@ class BookUpdate(UpdateView):
     fields = ['title', 'isbn', 'year', 'author', 'publisher']
 
 #Delete a book
-class BookDelete(DeleteView):
+class BookDelete(LoginRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('library:books')
 
