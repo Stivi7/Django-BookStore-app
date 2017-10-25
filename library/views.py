@@ -123,7 +123,7 @@ def signup(request):
             return redirect('library:index')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/reg.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 
