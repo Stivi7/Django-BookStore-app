@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'ta$=_7+gq5wl1!ntw4ovpcj89ydyq3lh=ydcw+n@4-#1q(orb9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'bookstore9.herokuapp.com']
 
