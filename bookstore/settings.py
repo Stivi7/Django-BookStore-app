@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'bookstore9.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig'
     'library.apps.LibraryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,5 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 LOGIN_REDIRECT_URL = 'index'
 
+REST_FRAMEWORK = {
+}
