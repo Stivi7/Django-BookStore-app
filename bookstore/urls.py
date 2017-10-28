@@ -38,5 +38,8 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    # api routes
     url(r'^api/', include(router.urls)),
+    url(r'^users/$', api_views.UserList.as_view()),
+    url(r'^users/(?P<pk>[0-9]+)/$', api_views.UserDetail.as_view()),
 ]
