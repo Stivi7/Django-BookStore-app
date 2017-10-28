@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'bookstore9.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
     'library.apps.LibraryConfig',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -11,3 +11,9 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Publisher
         fields = ('publisher_name', 'publisher_address', 'publisher_email', 'web')
+
+
+class BookSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('title', 'isbn', 'year', 'author', 'publisher')

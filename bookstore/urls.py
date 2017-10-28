@@ -17,6 +17,14 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from library import views
+from rest_framework import routers
+from api import views as api_views
+
+#api router
+router = routers.DefaultRouter()
+router.register(r'authors', api_views.AuthorViewSet)
+router.register(r'books', api_views.BookViewSet)
+router.register(r'publishers', api_views.PublisherViewSet)
 
 
 urlpatterns = [
@@ -26,9 +34,9 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
-    url(r'^api/', include('api.urls', namespace='api'))
 ]
 
 urlpatterns += [
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^api/', include(router.urls)),
 ]
