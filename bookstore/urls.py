@@ -19,13 +19,13 @@ from django.contrib.auth import views as auth_views
 from library import views
 from rest_framework import routers
 from api import views as api_views
+from rest_framework.authtoken.views import obtain_auth_token
 
 #api router
 router = routers.DefaultRouter()
 router.register(r'authors', api_views.AuthorViewSet)
 router.register(r'books', api_views.BookViewSet)
 router.register(r'publishers', api_views.PublisherViewSet)
-
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -42,4 +42,5 @@ urlpatterns += [
     url(r'^api/', include(router.urls)),
     url(r'^users/$', api_views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', api_views.UserDetail.as_view()),
+    url(r'^get-token/', obtain_auth_token),
 ]

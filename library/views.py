@@ -33,6 +33,15 @@ class BookList(LoginRequiredMixin, ListView):
 class AuthorList(LoginRequiredMixin, ListView):
     model = Author
     context_object_name = 'authors'
+    # def get_context_data(self, **kwargs):
+    # Call the base implementation first to get a context
+    #     c = super(AuthorList, self).get_context_data(**kwargs)
+    #     user = self.request.user
+    #     return c
+    # class Meta:
+    #     model = Author
+        
+
 
 class PublisherList(LoginRequiredMixin, ListView):
     model = Publisher
@@ -54,12 +63,17 @@ class PublisherDetails(LoginRequiredMixin, DetailView):
 #Add an author
 class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
-    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
+    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email', 'owner']
+    # def get_context_data(self, **kwargs):
+    # # Call the base implementation first to get a context
+    #     c = super(AuthorList, self).get_context_data(**kwargs)
+    #     user = self.request.user
+    #     return c
 
 #Modify an author
 class AuthorUpdate(LoginRequiredMixin, UpdateView):
     model = Author
-    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
+    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email', 'owner']
 
 #Delete an author
 @login_required
@@ -76,13 +90,13 @@ def delete_a(request, author_id):
 #Add a publisher
 class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
-    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
+    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web', 'owner']
 
 
 #Modify a publisher
 class PublisherUpdate(LoginRequiredMixin, UpdateView):
     model = Publisher
-    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
+    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web', 'owner']
 
 #Delete a publisher
 @login_required
@@ -99,12 +113,12 @@ def delete_p(request, pub_id):
 #Add a new book (ModelView generic view)
 class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'isbn', 'year', 'author', 'publisher']
+    fields = ['title', 'isbn', 'year', 'author', 'publisher', 'owner']
 
 #Modify a book
 class BookUpdate(UpdateView):
     model = Book
-    fields = ['title', 'isbn', 'year', 'author', 'publisher']
+    fields = ['title', 'isbn', 'year', 'author', 'publisher', 'owner']
 
 #Delete a book
 class BookDelete(LoginRequiredMixin, DeleteView):
