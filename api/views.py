@@ -9,9 +9,11 @@ from django.contrib.auth.models import User
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    # permission_classes = (permissions.IsAuthenticated,)
     #creates an owner field for the serializers to use
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+    
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
