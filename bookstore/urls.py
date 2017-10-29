@@ -43,4 +43,7 @@ urlpatterns += [
     url(r'^users/$', api_views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)/$', api_views.UserDetail.as_view()),
     url(r'^get-token/', obtain_auth_token),
+    url(r'^authordetail/(?P<pk>[0-9]+)/$', api_views.AuthorDetail.as_view(), name='author-detail'),
+    url(r'^bookdetail/(?P<pk>[0-9]+)/$', api_views.BookDetail.as_view(), name='book-detail'),
+    url(r'^publisherdetail/(?P<pk>[0-9]+)/$', api_views.PublisherDetail.as_view(), name='publisher-detail')
 ]
