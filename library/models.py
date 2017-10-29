@@ -42,7 +42,6 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     owner = models.ForeignKey('auth.User', related_name='books', on_delete=models.CASCADE)
-   
 
     def get_absolute_url(self):
         return reverse('library:books')
