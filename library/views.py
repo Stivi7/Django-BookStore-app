@@ -65,9 +65,9 @@ class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
     fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
     
-    def get_initial(self):
-        user = self.request.user
-        return {'owner': user}
+    # def get_initial(self):
+    #     user = self.request.user
+        # return {'owner': user}
 
 #Modify an author
 class AuthorUpdate(LoginRequiredMixin, UpdateView):
