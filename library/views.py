@@ -17,7 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 #top 10 books in the home page
 @login_required
 def index(request):
-    books = Book.objects.all()[:10]
+    books = Book.objects.filter(owner=request.user)
     author = Author.objects.all()
     context = {
         'books': books,
@@ -29,23 +29,23 @@ def index(request):
 class BookList(LoginRequiredMixin, ListView):
     model = Book
     context_object_name = 'books'
+    #shows only user's books
+    def get_queryset(self):
+        return Book.objects.filter(owner=self.request.user)
 
 class AuthorList(LoginRequiredMixin, ListView):
     model = Author
     context_object_name = 'authors'
-    # def get_context_data(self, **kwargs):
-    # Call the base implementation first to get a context
-    #     c = super(AuthorList, self).get_context_data(**kwargs)
-    #     user = self.request.user
-    #     return c
-    # class Meta:
-    #     model = Author
-        
 
-
+    def get_queryset(self):
+        return Author.objects.filter(owner=self.request.user)
+    
 class PublisherList(LoginRequiredMixin, ListView):
     model = Publisher
     context_object_name = 'publishers'
+
+    def get_queryset(self):
+        return Publisher.objects.filter(owner=self.request.user)
     
 
 
@@ -63,17 +63,16 @@ class PublisherDetails(LoginRequiredMixin, DetailView):
 #Add an author
 class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
-    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email', 'owner']
-    # def get_context_data(self, **kwargs):
-    # # Call the base implementation first to get a context
-    #     c = super(AuthorList, self).get_context_data(**kwargs)
-    #     user = self.request.user
-    #     return c
+    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
+    
+    def get_initial(self):
+        user = self.request.user
+        return {'owner': user}
 
 #Modify an author
 class AuthorUpdate(LoginRequiredMixin, UpdateView):
     model = Author
-    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email', 'owner']
+    fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
 
 #Delete an author
 @login_required
@@ -90,13 +89,13 @@ def delete_a(request, author_id):
 #Add a publisher
 class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
-    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web', 'owner']
+    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
 
 
 #Modify a publisher
 class PublisherUpdate(LoginRequiredMixin, UpdateView):
     model = Publisher
-    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web', 'owner']
+    fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
 
 #Delete a publisher
 @login_required
@@ -113,12 +112,12 @@ def delete_p(request, pub_id):
 #Add a new book (ModelView generic view)
 class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'isbn', 'year', 'author', 'publisher', 'owner']
+    fields = ['title', 'isbn', 'year', 'author', 'publisher']
 
 #Modify a book
 class BookUpdate(UpdateView):
     model = Book
-    fields = ['title', 'isbn', 'year', 'author', 'publisher', 'owner']
+    fields = ['title', 'isbn', 'year', 'author', 'publisher']
 
 #Delete a book
 class BookDelete(LoginRequiredMixin, DeleteView):
