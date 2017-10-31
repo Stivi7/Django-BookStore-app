@@ -1,8 +1,8 @@
 {% extends 'partials/base.html' %}
 {% block content %}
-<h1>Add Author</h1>
+<h1 class="text-center">Add Author</h1>
 <form action="" method="post">
-    <div class="form-group" style="width:40%">
+    <div class="form-group wrapper" style="width:40%">
         {% csrf_token %} {% include 'library/form-template.html'%}
         <br/>
         <button class="btn btn-default" type="submit">Submit</button>

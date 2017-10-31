@@ -6,6 +6,9 @@
 <br/>
 <div class="wrapper">
 <table class="table">
+    {% if books.count == 0 %}
+    {% include 'partials/empty.html' %}
+    {% else %}
     <tr>
         <th>Book title</th>
         <th>Author</th>
@@ -20,6 +23,7 @@
         <td><a href="{% url 'library:publisher_details' book.publisher.id %}?next={{ request.path }}">{{book.publisher}}</a></td>
     </tr>
     {% endfor %}
+    {% endif %}
 </table>
 </div>
 </div>

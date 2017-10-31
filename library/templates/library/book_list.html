@@ -9,10 +9,10 @@
     <br/>
     <div class="wrapper">
         <ol class="list-group">
-            {% for book in books%}
+            {% if books.count == 0 %} {% include 'partials/empty.html'%} {% else %} {% for book in books%}
             <li class="list_padd">
                 <div class="row">
-                    
+
                     <!-- Details -->
                     <div class="col-lg-8">
                         {{book.title}}
@@ -36,7 +36,7 @@
 
 
             </li>
-            {% endfor %}
+            {% endfor %} {% endif %}
         </ol>
     </div>
 </div>

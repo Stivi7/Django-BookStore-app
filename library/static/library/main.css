@@ -7,6 +7,7 @@ body {
     padding: 20px;
     background-color: white !important;
     box-shadow: 0 0 20px 0 #aaa;
+    margin: auto !important;
 }
 
 h1 {
@@ -31,4 +32,8 @@ ol {
 
 .right-actions {
     text-align: right;
+}
+
+i.fa {
+    font-size: 80px !important;
 }
