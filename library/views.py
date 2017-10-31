@@ -14,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 #top 10 books in the home page
 @login_required
 def index(request):
@@ -65,10 +66,11 @@ class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
     fields = ['author_name', 'author_address', 'birthday', 'phone_number', 'author_email']
     
-    # def get_initial(self):
-    #     user = self.request.user
-        # return {'owner': user}
-
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(AuthorCreate, self).form_valid(form)
+    
+    
 #Modify an author
 class AuthorUpdate(LoginRequiredMixin, UpdateView):
     model = Author
@@ -90,6 +92,10 @@ def delete_a(request, author_id):
 class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
     fields = ['publisher_name', 'publisher_address', 'publisher_email', 'web']
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(PublisherCreate, self).form_valid(form)
 
 
 #Modify a publisher
@@ -113,6 +119,10 @@ def delete_p(request, pub_id):
 class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
     fields = ['title', 'isbn', 'year', 'author', 'publisher']
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(BookCreate, self).form_valid(form)
 
 #Modify a book
 class BookUpdate(UpdateView):
