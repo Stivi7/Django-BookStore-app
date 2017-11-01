@@ -13,6 +13,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms import ModelChoiceField
 
 
 #top 10 books in the home page
@@ -118,12 +119,21 @@ def delete_p(request, pub_id):
 #Add a new book (ModelView generic view)
 class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'isbn', 'year', 'author', 'publisher']
+    fields = ['title', 'isbn', 'year','author', 'publisher']
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
+        form.instance.author = ModelChoiceField(queryset=Author.objects.filter(owner=self.request))
         return super(BookCreate, self).form_valid(form)
 
+    # def form_valid(self, form):
+    #     b = Book.objects.all
+    #     form.instance.author = ModelChoiceField(queryset=b.author_set.filter(owner=self.request.user))
+    #     return super(BookCreate, self).form_valid(form)
+
+    
+
+    
 #Modify a book
 class BookUpdate(UpdateView):
     model = Book
