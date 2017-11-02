@@ -11,8 +11,7 @@ class BookForm(forms.Form):
     publisher = forms.ModelChoiceField(queryset=Publisher.objects.all())
 
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('owner')
         super(BookForm, self).__init__(*args, **kwargs)
-        self.request = kwargs.pop('request', None)
-        print(self.request)
-        
-        # self.fields['author'] = forms.ModelChoiceField(queryset=Author.objects.filter(owner=self.request.user))
+        self.fields['author'].queryset = Author.objects.filter(owner=self.request)
+        self.fields['publisher'].queryset = Publisher.objects.filter(owner=self.request)
