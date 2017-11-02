@@ -5,7 +5,7 @@ from .models import Author, Book, Publisher
 from datetime import datetime
 from django.http import JsonResponse
 from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
 from django.utils.http import is_safe_url
 from django.views.generic import ListView, DetailView
@@ -14,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import ModelChoiceField
+from library.forms import BookForm
 
 
 #top 10 books in the home page
@@ -117,14 +118,14 @@ def delete_p(request, pub_id):
 
 
 #Add a new book (ModelView generic view)
-class BookCreate(LoginRequiredMixin, CreateView):
-    model = Book
-    fields = ['title', 'isbn', 'year','author', 'publisher']
-
-    def form_valid(self, form):
-        form.instance.owner = self.request.user
-        form.instance.author = ModelChoiceField(queryset=Author.objects.filter(owner=self.request))
-        return super(BookCreate, self).form_valid(form)
+class BookCreate(LoginRequiredMixin, FormView):
+    template_name = 'library/book_form.html'
+    form_class = BookForm
+    success_url = '/home/author/'
+    # def form_valid(self, form):
+    #     form.instance.owner = self.request.user
+    #     form.instance.author = ModelChoiceField(queryset=Author.objects.filter(owner=self.request))
+    #     return super(BookCreate, self).form_valid(form)
 
     # def form_valid(self, form):
     #     b = Book.objects.all
