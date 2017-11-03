@@ -118,10 +118,9 @@ def delete_p(request, pub_id):
 
 
 #Add a new book (ModelView generic view)
-class BookCreate(LoginRequiredMixin, FormView):
+class BookCreate(LoginRequiredMixin, CreateView):
     template_name = 'library/book_form.html'
     form_class = BookForm
-    success_url = '/home/books/'
 
     #pass the self.request.user to the form
     def get_form_kwargs(self):
@@ -129,10 +128,9 @@ class BookCreate(LoginRequiredMixin, FormView):
         kwargs.update({'owner': self.request.user})
         return kwargs
     
-    # def form_valid(self, form):
-    #     form.instance.created_by = self.request.user
-    #     return super(BookCreate, self).form_valid(form)
-
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(BookCreate, self).form_valid(form)
 
     
 
