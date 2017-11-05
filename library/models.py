@@ -44,6 +44,7 @@ class Book(models.Model):
     year = models.IntegerField(null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    book_cover = models.FileField()
     owner = models.ForeignKey('auth.User', related_name='books', on_delete=models.CASCADE)
 
     def get_absolute_url(self):

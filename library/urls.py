@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^author/(?P<pk>[0-9]+)/$', views.AuthorDetails.as_view(), name='author_details'),
     #home/publisher/id
     url(r'^publisher/(?P<pk>[0-9]+)/$', views.PublisherDetails.as_view(), name='publisher_details'),
+    #home/books/id
+    url(r'^books/(?P<pk>[0-9]+)/$', views.BookDetails.as_view(), name='book_details'),
     #home/add
     url(r'^add$', views.AuthorCreate.as_view(), name="add"),
     #home/author/modify/id

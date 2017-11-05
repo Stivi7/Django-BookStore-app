@@ -1,0 +1,15 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+<h1>Book Details</h1>
+<div>
+    <img src="{{ object.book_cover.url }}" width="150" height="200">
+</div>
+<div>
+<h5>Title:</h5> {{ object.title }}
+<h5>ISBN:</h5> {{ object.isbn }}
+<h5>Year:</h5> {{ object.year }}
+<h5>Author:</h5> {{ object.author }}
+<h5>Publisher</h5> {{ object.publisher }}
+</br>
+</div>
+{% endblock %}

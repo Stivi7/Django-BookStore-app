@@ -63,6 +63,11 @@ class PublisherDetails(LoginRequiredMixin, DetailView):
     model = Publisher
     template_name = 'details/pubDetails.html'
 
+
+class BookDetails(LoginRequiredMixin, DetailView):
+    model = Book
+    template_name = 'details/bookDetails.html'    
+
 #Add an author
 class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
@@ -138,7 +143,7 @@ class BookCreate(LoginRequiredMixin, CreateView):
 #Modify a book
 class BookUpdate(UpdateView):
     model = Book
-    fields = ['title', 'isbn', 'year', 'author', 'publisher']
+    fields = ['title', 'isbn', 'year', 'author', 'publisher', 'book_cover']
 
 #Delete a book
 class BookDelete(LoginRequiredMixin, DeleteView):

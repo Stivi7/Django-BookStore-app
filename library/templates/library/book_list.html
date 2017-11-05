@@ -15,7 +15,7 @@
 
                     <!-- Details -->
                     <div class="col-lg-8">
-                        {{book.title}}
+                        <a href="{% url 'library:book_details' book.id %}?next={{ request.path }}">{{book.title}}</a>
                     </div>
 
                     <!-- Actions -->

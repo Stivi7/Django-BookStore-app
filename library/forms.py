@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'isbn', 'year', 'author', 'publisher']
+        fields = ['title', 'isbn', 'year', 'author', 'publisher', 'book_cover']
     
     #override the fields
     def __init__(self, *args, **kwargs):
