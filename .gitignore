@@ -5,3 +5,5 @@ myenv
 myproject/ignore_directory
 
 Makefile
+
+bookstore/media
