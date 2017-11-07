@@ -182,10 +182,6 @@ def handler404(request):
 def search_results(request):
     result = request.GET['search']
 
-    # search_res = Book.objects.annotate(
-    #     search=SearchVector('title'),
-    # ).filter(title__startswith=result).filter(owner=request.user)
-
     search_res = Book.objects.filter(title__icontains=result)
     search_res.filter(owner=request.user)
 
