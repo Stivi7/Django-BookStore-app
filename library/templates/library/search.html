@@ -1,4 +1,15 @@
 {% extends 'partials/base.html' %}
 {% block content %}
-<h1>test</h1>
+
+    <div class="wrapper text-center">
+    <ul>
+        {% if results.count == 0 %}
+        {% include 'partials/empty.html'%}
+        {% else %}
+        {% for result in results %}
+        <li>{{ result }}</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+    </div>
 {% endblock %}
