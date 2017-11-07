@@ -23,6 +23,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 #api router
 router = routers.DefaultRouter()
 router.register(r'authors', api_views.AuthorViewSet)
@@ -50,6 +51,7 @@ urlpatterns += [
     url(r'^publisherdetail/(?P<pk>[0-9]+)/$', api_views.PublisherDetail.as_view(), name='publisher-detail')
 ]
 
+handler404 = views.handler404
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

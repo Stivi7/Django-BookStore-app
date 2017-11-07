@@ -40,4 +40,6 @@ urlpatterns = [
     url(r'^update_books/(?P<pk>[0-9]+)/$', views.BookUpdate.as_view(), name='book-update'),
     #home/delete_books/id
     url(r'^delete_books/(?P<pk>[0-9]+)/$', views.BookDelete.as_view(), name='book-delete'),
+    #home/search
+    url(r'^search/$', views.search_results, name="search_results")
 ]

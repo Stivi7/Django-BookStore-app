@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import ModelChoiceField
 from library.forms import BookForm
+from django.contrib.postgres.search import SearchVector
 
 
 #top 10 books in the home page
@@ -168,6 +169,26 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+#Custom error views
+
+def handler404(request):
+    render(request, 'errors/404.html', status=404)
+
+
+#search
+
+def search_results(request):
+    result = request.GET['search']
+    search_res = Entry.objects.annotate(
+        search=SearchVector('title', 'author', 'publisher'),
+    ).filter(search=result)
+
+    context = {
+        'results': search_res
+    }
+    return render(request, 'library/search.html', context)
 
 
 
