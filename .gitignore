@@ -6,4 +6,6 @@ myproject/ignore_directory
 
 Makefile
 
-bookstore/media
+*.png
+
+*.jpg
