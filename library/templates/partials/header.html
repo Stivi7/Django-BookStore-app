@@ -37,7 +37,7 @@
               
               <p class="nav-link pull-left">{{ user.get_username }}</p>
               <a class="nav-link pull-left" href="{{ next }}">Go Back</a>
-              <a class="nav-link pull-left" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
+              <a class="nav-link pull-left" href="{% url 'logout' %}">Logout</a>
               <form class="form-inline my-2 my-lg-0" method='GET' action='{% url "library:search_results" %}'>
                 <input class="form-control mr-sm-2" type="text" placeholder="Search books" name="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
