@@ -9,3 +9,5 @@ Makefile
 *.png
 
 *.jpg
+
+bookstore/__pycache__
